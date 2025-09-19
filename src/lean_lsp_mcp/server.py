@@ -231,7 +231,7 @@ def infotree_length(ctx: Context, file_path: str) -> List[str] | str:
     new_tree = []
     while tree:
         for child in tree:
-            new_tree += tree['children']
+            new_tree += child['children']
         tree = new_tree
         length += len(tree)
     return length
