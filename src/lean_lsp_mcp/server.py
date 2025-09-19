@@ -543,7 +543,6 @@ def run_code(ctx: Context, code: str) -> List[str] | str:
 
 
 @mcp.tool("lean_leansearch")
-@rate_limited("leansearch", max_requests=3, per_seconds=30)
 def leansearch(ctx: Context, query: str, num_results: int = 5) -> List[Dict] | str:
     """Search for Lean theorems, definitions, and tactics using leansearch.net.
 
@@ -593,7 +592,6 @@ def leansearch(ctx: Context, query: str, num_results: int = 5) -> List[Dict] | s
 
 
 @mcp.tool("lean_loogle")
-@rate_limited("loogle", max_requests=3, per_seconds=30)
 def loogle(ctx: Context, query: str, num_results: int = 8) -> List[dict] | str:
     """Search for definitions and theorems using loogle.
 
@@ -635,7 +633,6 @@ def loogle(ctx: Context, query: str, num_results: int = 8) -> List[dict] | str:
 
 
 @mcp.tool("lean_state_search")
-@rate_limited("lean_state_search", max_requests=3, per_seconds=30)
 def state_search(
     ctx: Context, file_path: str, line: int, column: int, num_results: int = 5
 ) -> List | str:
@@ -687,7 +684,6 @@ def state_search(
 
 
 @mcp.tool("lean_hammer_premise")
-@rate_limited("hammer_premise", max_requests=3, per_seconds=30)
 def hammer_premise(
     ctx: Context, file_path: str, line: int, column: int, num_results: int = 32
 ) -> List[str] | str:
