@@ -210,7 +210,7 @@ def diagnostic_messages(ctx: Context, file_path: str) -> List[str] | str:
     return format_diagnostics(diagnostics)
 
 @mcp.tool("lean_infotree_length")
-def infotree_length(ctx: Context, file_path: str) -> List[str] | str:
+def infotree_length(ctx: Context, file_path: str) -> int:
     """Get a infotree length for a Lean file. This is approximately equal to the length of the proof.
 
     Args:
