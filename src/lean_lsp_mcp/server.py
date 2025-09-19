@@ -209,6 +209,32 @@ def diagnostic_messages(ctx: Context, file_path: str) -> List[str] | str:
     diagnostics = client.get_diagnostics(rel_path)
     return format_diagnostics(diagnostics)
 
+@mcp.tool("lean_infotree_length")
+def infotree_length(ctx: Context, file_path: str) -> List[str] | str:
+    """Get a infotree length for a Lean file. This is approximately equal to the length of the proof.
+
+    Args:
+        file_path (str): Abs path to Lean file
+
+    Returns:
+        int: Length of the infotree of the file
+    """
+    rel_path = setup_client_for_file(ctx, file_path)
+    if not rel_path:
+        return "Invalid Lean file path: Unable to start LSP server or load file"
+
+    update_file(ctx, rel_path)
+
+    client: LeanLSPClient = ctx.request_context.lifespan_context.client
+    tree = client.get_info_trees(rel_path, parse=True)
+    length = len(tree)
+    new_tree = []
+    while tree:
+        for child in tree:
+            new_tree += tree['children']
+        tree = new_tree
+        length += len(tree)
+    return length
 
 @mcp.tool("lean_goal")
 def goal(ctx: Context, file_path: str, line: int, column: Optional[int] = None) -> str:
