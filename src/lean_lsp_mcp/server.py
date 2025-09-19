@@ -228,8 +228,8 @@ def infotree_length(ctx: Context, file_path: str) -> List[str] | str:
     client: LeanLSPClient = ctx.request_context.lifespan_context.client
     tree = client.get_info_trees(rel_path, parse=True)
     length = len(tree)
-    new_tree = []
     while tree:
+        new_tree = []
         for child in tree:
             new_tree += child['children']
         tree = new_tree
