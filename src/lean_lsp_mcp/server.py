@@ -227,6 +227,7 @@ def infotree_length(ctx: Context, file_path: str) -> int:
 
     client: LeanLSPClient = ctx.request_context.lifespan_context.client
     tree = client.get_info_trees(rel_path, parse=True)
+    logger.info(f"Infotree for {rel_path}: {tree}")
     length = len(tree)
     while tree:
         new_tree = []
@@ -280,7 +281,7 @@ def goal(ctx: Context, file_path: str, line: int, column: Optional[int] = None) 
 
     else:
         goal = client.get_goal(rel_path, line - 1, column - 1)
-        f_goal = format_goal(goal, f"Not a valid goal position. Try elsewhere?")
+        f_goal = format_goal(goal, "Not a valid goal position. Try elsewhere?")
         f_line = format_line(content, line, column)
         return f"Goals at:\n{f_line}\n{f_goal}"
 
