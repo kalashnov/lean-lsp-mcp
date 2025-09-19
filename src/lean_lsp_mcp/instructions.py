@@ -3,6 +3,7 @@ INSTRUCTIONS = """## General Rules
 - Always analyze/search context before each file edit.
 - This MCP does NOT make permanent file changes. Use other tools for editing.
 - Work iteratively: Small steps, intermediate sorries, frequent checks.
+- Prefer short working proofs over elaborate ones.
 
 ## Key Tools
 - lean_goal: Check proof state. USE OFTEN!
@@ -11,4 +12,5 @@ INSTRUCTIONS = """## General Rules
 - lean_leansearch: Search theorems using natural language or Lean terms.
 - lean_loogle: Search definitions and theorems by name, type, or subexpression.
 - lean_state_search: Search theorems using goal-based search.
+- lean_infotree_length: Provides a measure of length of the proof.
 """
